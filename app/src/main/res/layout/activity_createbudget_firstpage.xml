@@ -44,11 +44,11 @@
         android:id="@+id/textView2"
         style="@android:style/TextAppearance.DeviceDefault.Medium"
         android:layout_width="396dp"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
         android:fontFamily="@font/poppins_bold"
         android:paddingStart="50px"
         android:text="Choose your template"
-        android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="22sp" />
     </LinearLayout>
@@ -141,11 +141,11 @@
             android:id="@+id/textView3"
             style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:layout_width="396dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:fontFamily="@font/poppins_bold"
+            android:gravity="center_vertical"
             android:paddingStart="50px"
             android:text="Input your income"
-            android:textAlignment="textStart"
             android:textColor="#FFFFFF"
             android:textSize="22sp" />
     </LinearLayout>
@@ -174,7 +174,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingVertical="20dp">
+        android:paddingVertical="10dp">
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="35dp"
@@ -186,20 +186,20 @@
             android:id="@+id/textView4"
             style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
             android:fontFamily="@font/poppins_bold"
             android:paddingStart="50px"
             android:text="Budget Length"
-            android:textAlignment="textStart"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
 
     <Spinner
         android:id="@+id/spinner5"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:backgroundTint="#FFFFFF"
         android:textAlignment="viewStart"
         android:paddingStart="20dp"/>
