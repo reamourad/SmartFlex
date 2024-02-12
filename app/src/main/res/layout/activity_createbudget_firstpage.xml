@@ -15,14 +15,13 @@
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         />
 
     <TextView
         android:id="@+id/textView1"
         style="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:layout_width="399dp"
-        android:layout_height="66dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
 
         android:text="Create Your Budget"
@@ -62,8 +61,8 @@
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="97dp"
-            android:layout_marginRight="5dp"
             android:layout_height="54dp"
+            android:layout_marginRight="5dp"
             android:backgroundTint="#FFFFFF"
             android:textAlignment="viewStart"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -74,15 +73,142 @@
             android:layout_width="97dp"
             android:layout_height="54dp"
             android:backgroundTint="#FFFFFF"
-            android:textAlignment="viewStart"
-            />
+            android:textAlignment="viewStart" />
+
         <Spinner
             android:id="@+id/spinner3"
             android:layout_width="97dp"
             android:layout_height="54dp"
             android:backgroundTint="#FFFFFF"
-            android:textAlignment="viewStart"
-            />
+            android:textAlignment="viewStart" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/needsText"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingStart="100px"
+            android:text="Needs"
+            android:textAlignment="textStart"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:id="@+id/wantsText"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingStart="50dp"
+            android:text="Wants"
+            android:textAlignment="textStart"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:id="@+id/savingText"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingStart="50dp"
+            android:text="Savings"
+            android:textAlignment="textStart"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="20dp">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/number_circle_two"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_width="396dp"
+            android:layout_height="36dp"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingStart="50px"
+            android:text="Input your income"
+            android:textAlignment="textStart"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:textColor="@color/white"/>
+        <Spinner
+            android:id="@+id/spinner4"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:backgroundTint="#FFFFFF"
+            android:textAlignment="viewStart"
+            android:paddingStart="20dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="20dp">
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/number_circle_three"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingStart="50px"
+            android:text="Budget Length"
+            android:textAlignment="textStart"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner5"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:backgroundTint="#FFFFFF"
+        android:textAlignment="viewStart"
+        android:paddingStart="20dp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm" />
+
+
 </LinearLayout>
