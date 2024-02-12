@@ -155,14 +155,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/incomeInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
             android:textColor="@color/white"/>
         <Spinner
-            android:id="@+id/spinner4"
+            android:id="@+id/frequencyIncome"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:backgroundTint="#FFFFFF"
@@ -209,6 +209,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Confirm" />
+
+    <TextView
+        android:id="@+id/ConfirmedString"
+        style="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center_vertical"
+        android:paddingStart="50px"
+        android:text="Confirmed"
+        android:textColor="@color/red"
+        android:textSize="15sp"
+        android:visibility="invisible" />
 
 
 </LinearLayout>

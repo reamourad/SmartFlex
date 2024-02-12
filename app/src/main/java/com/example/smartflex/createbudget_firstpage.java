@@ -1,10 +1,26 @@
 package com.example.smartflex;
 
+import static com.example.smartflex.Database.budgetFrequency;
+import static com.example.smartflex.Database.income;
+import static com.example.smartflex.Database.incomeFrequency;
+import static com.example.smartflex.Database.pourcentageNeeds;
+import static com.example.smartflex.Database.pourcentageWants;
+import static com.example.smartflex.Database.pourcentangeSavings;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class createbudget_firstpage extends AppCompatActivity {
 
@@ -17,10 +33,10 @@ public class createbudget_firstpage extends AppCompatActivity {
         Spinner dropdown = findViewById(R.id.spinner);
         Spinner dropdown2 = findViewById(R.id.spinner2);
         Spinner dropdown3 = findViewById(R.id.spinner3);
-        Spinner dropdown4 = findViewById(R.id.spinner4);
+        Spinner dropdown4 = findViewById(R.id.frequencyIncome);
         Spinner dropdown5 = findViewById(R.id.spinner5);
         //create a list of items for the spinner.
-        String[] items = new String[]{"","10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"};
+        String[] items = new String[]{"","0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"};
         String[] items2 = new String[]{"", "Weekly", "Monthly", "Yearly"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
@@ -32,5 +48,105 @@ public class createbudget_firstpage extends AppCompatActivity {
         dropdown3.setAdapter(adapter);
         dropdown4.setAdapter(adapter2);
         dropdown5.setAdapter(adapter2);
+
+        Button confirmButton = (Button)findViewById(R.id.button);
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView ConfirmedString = findViewById(R.id.ConfirmedString);
+                //check number 1
+                checkTemplate(dropdown, dropdown2, dropdown3, ConfirmedString);
+
+                //check number 2
+                checkIncome(dropdown4, ConfirmedString);
+
+                //check number 3
+                checkBudgetLength(dropdown5, ConfirmedString);
+                ConfirmedString.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
+
+    private void checkBudgetLength(Spinner dropdown5, TextView ConfirmedString) {
+        String selectedBudgetFrequency = dropdown5.getSelectedItem().toString();
+        if(selectedBudgetFrequency.isEmpty()){
+            ConfirmedString.setText("Please select a budget length");
+            return;
+        }
+        budgetFrequency = convertStringToFrequency(selectedBudgetFrequency);
+    }
+
+    // Helper method to convert percentage string to int
+    private int convertPercentageToInt(String percentage) {
+        // Remove "%" sign and parse to int
+        return Integer.parseInt(percentage.replace("%", "").trim());
+    }
+
+    private void checkTemplate(Spinner dropdown, Spinner dropdown2, Spinner dropdown3, TextView ConfirmedString){
+        String selectedPercentageNeeds = dropdown.getSelectedItem().toString();
+        String selectedPercentageWants = dropdown2.getSelectedItem().toString();
+        String selectedPercentageSavings = dropdown3.getSelectedItem().toString();
+
+        // Check if no item is selected (empty string)
+        if (selectedPercentageNeeds.isEmpty() || selectedPercentageWants.isEmpty() || selectedPercentageSavings.isEmpty()) {
+            // Handle the case where no item is selected
+            ConfirmedString.setText("Please select a % for each category");
+            return; // Exit the onClick
+        }
+
+        //Convert dropdown string value to %
+        pourcentageNeeds = convertPercentageToInt(selectedPercentageNeeds);
+        pourcentageWants = convertPercentageToInt(selectedPercentageWants);
+        pourcentangeSavings = convertPercentageToInt(selectedPercentageSavings);
+
+        //Check if they add up to 100%
+        if(pourcentageNeeds + pourcentageWants + pourcentangeSavings == 100){
+            //Handle the case where they add up to 100%
+            ConfirmedString.setText("Confirmed");
+        }
+        else{
+            //Handle the case where it does not add up to 100%
+            ConfirmedString.setText("The percentages needs to add up to 100%");
+        }
+    }
+
+    private Frequency convertStringToFrequency(String frequency) {
+        switch (frequency.toUpperCase()) {
+            case "WEEKLY":
+                return Frequency.WEEKLY;
+            case "MONTHLY":
+                return Frequency.MONTHLY;
+            case "YEARLY":
+                return Frequency.YEARLY;
+            default:
+                throw new IllegalArgumentException("Invalid frequency: " + frequency);
+        }
+    }
+
+    private void checkIncome(Spinner dropdown4, TextView ConfirmedString){
+        //get and check income
+        EditText incomeInput = findViewById(R.id.incomeInput);
+        String incomeInputString = incomeInput.getText().toString();
+
+        //handle the case where the income is empty
+        if(incomeInputString.isEmpty()){
+            ConfirmedString.setText("Please enter your income");
+            return;
+        }
+
+        //check frequency
+        String selectedFrequency = dropdown4.getSelectedItem().toString();
+        //handle the case where frequency is empty
+        if(selectedFrequency.isEmpty()){
+            ConfirmedString.setText("Please enter the frequency of your income");
+            return;
+        }
+
+        income = Integer.parseInt(incomeInputString);
+        incomeFrequency = convertStringToFrequency(selectedFrequency);
+
+    }
+
 }
