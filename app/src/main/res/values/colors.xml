@@ -5,5 +5,9 @@
     <color name="blue">#161622</color>
     <color name="gray">#575757</color>
     <color name="red">#FF0000</color>
+    <color name="lightblue">#2196F3</color>
+    <color name="transparentBackground">#1E1E2D</color>
+    <color name="pastelBlue">#9CB1D1</color>
+
 
 </resources>

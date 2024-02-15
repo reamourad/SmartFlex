@@ -3,9 +3,9 @@ package com.example.smartflex;
 import static com.example.smartflex.Database.budgetFrequency;
 import static com.example.smartflex.Database.income;
 import static com.example.smartflex.Database.incomeFrequency;
-import static com.example.smartflex.Database.pourcentageNeeds;
-import static com.example.smartflex.Database.pourcentageWants;
-import static com.example.smartflex.Database.pourcentangeSavings;
+import static com.example.smartflex.Database.percentageNeeds;
+import static com.example.smartflex.Database.percentageWants;
+import static com.example.smartflex.Database.percentangeSavings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -64,6 +64,11 @@ public class createbudget_firstpage extends AppCompatActivity {
                 //check number 3
                 checkBudgetLength(dropdown5, ConfirmedString);
                 ConfirmedString.setVisibility(View.VISIBLE);
+                //temp fix to not go through a bool
+                if(ConfirmedString.getText() == "Confirmed"){
+                    //go to next activity
+                    startActivity(new Intent(createbudget_firstpage.this, CreateNeeds.class));
+                }
             }
         });
 
@@ -97,18 +102,18 @@ public class createbudget_firstpage extends AppCompatActivity {
         }
 
         //Convert dropdown string value to %
-        pourcentageNeeds = convertPercentageToInt(selectedPercentageNeeds);
-        pourcentageWants = convertPercentageToInt(selectedPercentageWants);
-        pourcentangeSavings = convertPercentageToInt(selectedPercentageSavings);
+        percentageNeeds = convertPercentageToInt(selectedPercentageNeeds);
+        percentageWants = convertPercentageToInt(selectedPercentageWants);
+        percentangeSavings = convertPercentageToInt(selectedPercentageSavings);
 
         //Check if they add up to 100%
-        if(pourcentageNeeds + pourcentageWants + pourcentangeSavings == 100){
+        if(percentageNeeds + percentageWants + percentangeSavings == 100){
             //Handle the case where they add up to 100%
             ConfirmedString.setText("Confirmed");
         }
         else{
             //Handle the case where it does not add up to 100%
-            ConfirmedString.setText("The percentages needs to add up to 100%");
+            ConfirmedString.setText("The % needs to add up to 100%");
         }
     }
 
