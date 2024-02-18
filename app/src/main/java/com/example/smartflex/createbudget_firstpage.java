@@ -5,22 +5,18 @@ import static com.example.smartflex.Database.income;
 import static com.example.smartflex.Database.incomeFrequency;
 import static com.example.smartflex.Database.percentageNeeds;
 import static com.example.smartflex.Database.percentageWants;
-import static com.example.smartflex.Database.percentangeSavings;
+import static com.example.smartflex.Database.percentageSavings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 public class createbudget_firstpage extends AppCompatActivity {
 
@@ -104,10 +100,10 @@ public class createbudget_firstpage extends AppCompatActivity {
         //Convert dropdown string value to %
         percentageNeeds = convertPercentageToInt(selectedPercentageNeeds);
         percentageWants = convertPercentageToInt(selectedPercentageWants);
-        percentangeSavings = convertPercentageToInt(selectedPercentageSavings);
+        percentageSavings = convertPercentageToInt(selectedPercentageSavings);
 
         //Check if they add up to 100%
-        if(percentageNeeds + percentageWants + percentangeSavings == 100){
+        if(percentageNeeds + percentageWants + percentageSavings == 100){
             //Handle the case where they add up to 100%
             ConfirmedString.setText("Confirmed");
         }
