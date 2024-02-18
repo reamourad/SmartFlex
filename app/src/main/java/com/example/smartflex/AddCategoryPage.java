@@ -5,6 +5,7 @@ import static com.example.smartflex.Database.needsCategory;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class AddCategoryPage extends AppCompatActivity {
+
+    private static final String ERROR_EMPTY_NAME = "Please enter a category name.";
+    private static final String ERROR_INVALID_COST = "Please enter a valid budget amount (positive number).";
+    private static final String ERROR_NO_OPTION_SELECTED = "Please select a cost type.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,37 +34,66 @@ public class AddCategoryPage extends AppCompatActivity {
             }
         });
 
-        //Click on confirm button
-        Button confirmBtn = findViewById(R.id.confirmButton);
+        // Confirmation handling
+        TextView confirmedTextView = findViewById(R.id.ConfirmedString);
 
-        confirmBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        Button confirmButton = findViewById(R.id.confirmButton);
+        confirmButton.setOnClickListener(v -> {
+            TextView categoryNameInput = findViewById(R.id.categoryName);
+            String categoryName = categoryNameInput.getText().toString();
+            float cost = 0;
+            CostType costType = null;
 
-                //set up the new needs
-                TextView categoryNameInput = findViewById(R.id.categoryName);
-                String categoryName = categoryNameInput.getText().toString();
-                EditText costInput = findViewById(R.id.budgetCost);
-                float cost = Integer.parseInt(costInput.getText().toString());
-                RadioGroup radioGroup = findViewById(R.id.radioGroup);
-                int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+            // Clear any previous error messages
+            confirmedTextView.setVisibility(View.GONE);
 
-                CostType costType = null;
-
-                if (selectedRadioButtonId == R.id.fixedOption) {
-                    costType = CostType.FIXED;
-                } else if (selectedRadioButtonId == R.id.variableOption) {
-                    costType = CostType.VARIABLE;
-                }
-
-                Category need = new Category(R.drawable.car, categoryName, cost, costType, false);
-                needsCategory.add(need);
-
-
-                //go back to needs
-                startActivity(new Intent(AddCategoryPage.this, CreateNeeds.class));
-
+            // Category name validation
+            if (categoryName.isEmpty()) {
+                showError(ERROR_EMPTY_NAME);
+                return;
             }
+
+            // Budget cost validation
+            EditText costInput = findViewById(R.id.budgetCost);
+            try {
+                String costString = costInput.getText().toString();
+                cost = Float.parseFloat(costString);
+                cost = Math.round(cost * 100.0f) / 100.0f;
+                if (cost <= 0) {
+                    throw new NumberFormatException(); // Handle non-positive cost
+                }
+            } catch (NumberFormatException e) {
+                showError(ERROR_INVALID_COST);
+                return;
+            }
+
+            // Cost type selection validation
+            RadioGroup radioGroup = findViewById(R.id.radioGroup);
+            int selectedId = radioGroup.getCheckedRadioButtonId();
+            if (selectedId == R.id.fixedOption) {
+                costType = CostType.FIXED;
+            } else if (selectedId == R.id.variableOption) {
+                costType = CostType.VARIABLE;
+            } else {
+                showError(ERROR_NO_OPTION_SELECTED);
+                return;
+            }
+
+            // If no errors, create and add category
+            Category newCategory = new Category(R.drawable.car, categoryName, cost, costType, false);
+            needsCategory.add(newCategory);
+
+            // Success message and navigate to needs page
+            confirmedTextView.setText("Category added successfully!");
+            confirmedTextView.setVisibility(View.VISIBLE);
+            startActivity(new Intent(AddCategoryPage.this, CreateNeeds.class));
         });
+    }
+
+    private void showError(String message) {
+        TextView confirmedTextView = findViewById(R.id.ConfirmedString);
+        confirmedTextView.setText(message);
+        confirmedTextView.setVisibility(View.VISIBLE);
+        confirmedTextView.setTextColor(Color.RED); // Use a visible error color
     }
 }

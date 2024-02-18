@@ -38,7 +38,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             ((CategoryViewHolder)holder).title.setText(entity.name);
             ((CategoryViewHolder) holder).imageView.setImageDrawable(ContextCompat.getDrawable(context, entity.icon));
             ((CategoryViewHolder) holder).costType.setText(entity.costType.toString());
-            ((CategoryViewHolder) holder).cost.setText(Float.toString(entity.cost));
+            ((CategoryViewHolder) holder).cost.setText("$" + Float.toString(entity.cost));
 
         }
     }

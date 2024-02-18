@@ -54,9 +54,9 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/recyclerview"/>
+                android:layout_height="360dp" />
         </LinearLayout>
     </ScrollView>
 
@@ -110,6 +110,7 @@
                 />
             <TextView
                 android:layout_width="match_parent"
+                android:id="@+id/remainingMoney"
                 android:layout_height="wrap_content"
                 android:text="200$"
                 android:textColor="@color/white"
