@@ -1,10 +1,10 @@
 package com.example.smartflex;
 
-import static com.example.smartflex.Database.amountNeeds;
+import static com.example.smartflex.Database.amountWants;
 import static com.example.smartflex.Database.income;
-import static com.example.smartflex.Database.needsCategory;
-import static com.example.smartflex.Database.percentageNeeds;
-import static com.example.smartflex.Database.remainingNeeds;
+import static com.example.smartflex.Database.percentageWants;
+import static com.example.smartflex.Database.remainingWants;
+import static com.example.smartflex.Database.wantsCategory;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,33 +22,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CreateNeeds extends AppCompatActivity {
+public class CreateWants extends AppCompatActivity {
     CategoryRecyclerAdapter adapter;
     private static final int REQUEST_CODE_DELETE_ITEM = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_needs);
-        adapter = new CategoryRecyclerAdapter(getApplicationContext(), needsCategory);
+        setContentView(R.layout.activity_create_wants);
+        adapter = new CategoryRecyclerAdapter(getApplicationContext(), wantsCategory);
 
-        //get the amount of money we have in needs
-        amountNeeds = percentageNeeds / 100.0f * income;
-        remainingNeeds = amountNeeds;
+        //get the amount of money we have in wants
+        amountWants = percentageWants / 100.0f * income;
+        remainingWants = amountWants;
 
         //get and set the remaining money
-        for (Category need : needsCategory) {
-            remainingNeeds -= need.cost;
+        for (Category want : wantsCategory) {
+            remainingWants -= want.cost;
         }
-        remainingNeeds = (int) (remainingNeeds * 100.0f) / 100.0f;
+        remainingWants = (int) (remainingWants * 100.0f) / 100.0f;
         TextView remainingMoneyTextView = findViewById(R.id.remainingMoney);
-        remainingMoneyTextView.setText(String.format("%.2f$", remainingNeeds));
+        remainingMoneyTextView.setText(String.format("%.2f$", remainingWants));
 
         //cant confirm if the remaining money is lesser than 0
         Button confirmButton = findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(v -> {
-            if (remainingNeeds >= 0) {
-                startActivity(new Intent(CreateNeeds.this, CreateWants.class));
+            if (remainingWants >= 0) {
+                startActivity(new Intent(CreateWants.this, MainActivity.class));
             }
         });
 
@@ -68,7 +68,7 @@ public class CreateNeeds extends AppCompatActivity {
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 //Remove swiped item from list and notify the RecyclerView
                 int position = viewHolder.getAdapterPosition();
-                needsCategory.remove(position);
+                wantsCategory.remove(position);
                 adapter.notifyItemRemoved(position);
 
                 // Call onCreate again
@@ -82,7 +82,7 @@ public class CreateNeeds extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CreateNeeds.this, AddCategoryPage.class));
+                startActivity(new Intent(CreateWants.this, AddCategoryPage.class));
             }
         });
 
@@ -91,7 +91,7 @@ public class CreateNeeds extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CreateNeeds.this, createbudget_firstpage.class));
+                startActivity(new Intent(CreateWants.this, CreateNeeds.class));
             }
         });
     }

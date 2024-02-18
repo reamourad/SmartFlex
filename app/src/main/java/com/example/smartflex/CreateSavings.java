@@ -1,10 +1,10 @@
 package com.example.smartflex;
 
-import static com.example.smartflex.Database.amountNeeds;
+import static com.example.smartflex.Database.amountSavings;
 import static com.example.smartflex.Database.income;
-import static com.example.smartflex.Database.needsCategory;
-import static com.example.smartflex.Database.percentageNeeds;
-import static com.example.smartflex.Database.remainingNeeds;
+import static com.example.smartflex.Database.percentageSavings;
+import static com.example.smartflex.Database.remainingSavings;
+import static com.example.smartflex.Database.savingsCategory;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,33 +22,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CreateNeeds extends AppCompatActivity {
+public class CreateSavings extends AppCompatActivity {
     CategoryRecyclerAdapter adapter;
     private static final int REQUEST_CODE_DELETE_ITEM = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_needs);
-        adapter = new CategoryRecyclerAdapter(getApplicationContext(), needsCategory);
+        setContentView(R.layout.activity_create_savings);
+        adapter = new CategoryRecyclerAdapter(getApplicationContext(), savingsCategory);
 
-        //get the amount of money we have in needs
-        amountNeeds = percentageNeeds / 100.0f * income;
-        remainingNeeds = amountNeeds;
+        //get the amount of money we have in wants
+        amountSavings = percentageSavings / 100.0f * income;
+        remainingSavings = amountSavings;
 
         //get and set the remaining money
-        for (Category need : needsCategory) {
-            remainingNeeds -= need.cost;
+        for (Category saving : savingsCategory) {
+            remainingSavings -= saving.cost;
         }
-        remainingNeeds = (int) (remainingNeeds * 100.0f) / 100.0f;
+        remainingSavings = (int) (remainingSavings * 100.0f) / 100.0f;
         TextView remainingMoneyTextView = findViewById(R.id.remainingMoney);
-        remainingMoneyTextView.setText(String.format("%.2f$", remainingNeeds));
+        remainingMoneyTextView.setText(String.format("%.2f$", remainingSavings));
 
         //cant confirm if the remaining money is lesser than 0
         Button confirmButton = findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(v -> {
-            if (remainingNeeds >= 0) {
-                startActivity(new Intent(CreateNeeds.this, CreateWants.class));
+            if (remainingSavings >= 0) {
+                startActivity(new Intent(CreateSavings.this, MainActivity.class));
             }
         });
 
@@ -68,7 +68,7 @@ public class CreateNeeds extends AppCompatActivity {
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 //Remove swiped item from list and notify the RecyclerView
                 int position = viewHolder.getAdapterPosition();
-                needsCategory.remove(position);
+                savingsCategory.remove(position);
                 adapter.notifyItemRemoved(position);
 
                 // Call onCreate again
@@ -82,7 +82,7 @@ public class CreateNeeds extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CreateNeeds.this, AddCategoryPage.class));
+                startActivity(new Intent(CreateSavings.this, AddCategoryPage.class));
             }
         });
 
@@ -91,7 +91,7 @@ public class CreateNeeds extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CreateNeeds.this, createbudget_firstpage.class));
+                startActivity(new Intent(CreateSavings.this, CreateNeeds.class));
             }
         });
     }

@@ -10,12 +10,15 @@
     android:gravity="top"
     android:padding="15dp"
     >
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="47dp"
+        android:layout_height="52dp"
+        android:textAlignment="viewStart"
+        app:srcCompat="@drawable/arrow_ios_back"
+        app:tint="@color/lightblue" />
 
-    <TextView
-        android:id="@+id/textInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+
 
     <TextView
         android:id="@+id/textView1"

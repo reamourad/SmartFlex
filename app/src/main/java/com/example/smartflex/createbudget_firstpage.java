@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -45,8 +46,15 @@ public class createbudget_firstpage extends AppCompatActivity {
         dropdown4.setAdapter(adapter2);
         dropdown5.setAdapter(adapter2);
 
+        //Go back to the last page
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(createbudget_firstpage.this, MainActivity.class));;
+            }
+        });
         Button confirmButton = (Button)findViewById(R.id.button);
-
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

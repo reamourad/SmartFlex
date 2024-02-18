@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -31,17 +32,17 @@
         android:textSize="28sp"
         />
     <TextView
-    android:id="@+id/textView2"
-    style="@android:style/TextAppearance.DeviceDefault.Medium"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fontFamily="@font/poppins_medium"
+        android:id="@+id/textView2"
+        style="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
 
-    android:text="Allocate the money for your\n NEEDS "
-    android:textAlignment="center"
-    android:textColor="@color/white"
-    android:textSize="20sp"
-    />
+        android:text="Allocate the money for your\n WANTS "
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
