@@ -60,7 +60,7 @@ public class AddCategoryPage extends AppCompatActivity {
                 String costString = costInput.getText().toString();
                 cost = Float.parseFloat(costString);
                 cost = Math.round(cost * 100.0f) / 100.0f;
-                if (cost <= 0) {
+                if (cost < 0) {
                     throw new NumberFormatException(); // Handle non-positive cost
                 }
             } catch (NumberFormatException e) {

@@ -1,9 +1,11 @@
 package com.example.smartflex;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,8 +40,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             ((CategoryViewHolder)holder).title.setText(entity.name);
             ((CategoryViewHolder) holder).imageView.setImageDrawable(ContextCompat.getDrawable(context, entity.icon));
             ((CategoryViewHolder) holder).costType.setText(entity.costType.toString());
-            ((CategoryViewHolder) holder).cost.setText("$" + Float.toString(entity.cost));
-
+            ((CategoryViewHolder) holder).cost.setText("$" + entity.cost);
         }
     }
 

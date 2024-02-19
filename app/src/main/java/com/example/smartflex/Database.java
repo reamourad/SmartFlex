@@ -2,6 +2,7 @@ package com.example.smartflex;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Database {
     static int percentageNeeds = 0;
@@ -23,5 +24,25 @@ public class Database {
     static List<Category> savingsCategory = new ArrayList<>();
 
     static Category newCategory = null;
+
+    // Method to retrieve a Category object by its ID
+    static public Category getCategoryById(String categoryId) {
+        for (Category category : needsCategory) {
+            if (Objects.equals(category.id, categoryId)) {
+                return category; // Found the Category object with the matching ID
+            }
+        }
+        for (Category category : wantsCategory) {
+            if (Objects.equals(category.id, categoryId)) {
+                return category; // Found the Category object with the matching ID
+            }
+        }
+        for (Category category : savingsCategory) {
+            if (Objects.equals(category.id, categoryId)) {
+                return category; // Found the Category object with the matching ID
+            }
+        }
+        return null; // Category with the given ID not found
+    }
 
 }
