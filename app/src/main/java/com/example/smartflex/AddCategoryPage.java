@@ -1,6 +1,7 @@
 package com.example.smartflex;
 
 import static com.example.smartflex.Database.needsCategory;
+import static com.example.smartflex.Database.newCategory;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -80,13 +81,9 @@ public class AddCategoryPage extends AppCompatActivity {
             }
 
             // If no errors, create and add category
-            Category newCategory = new Category(R.drawable.car, categoryName, cost, costType, false);
-            needsCategory.add(newCategory);
-
-            // Success message and navigate to needs page
-            confirmedTextView.setText("Category added successfully!");
-            confirmedTextView.setVisibility(View.VISIBLE);
-            startActivity(new Intent(AddCategoryPage.this, CreateNeeds.class));
+            newCategory = new Category(R.drawable.car, categoryName, cost, costType, false);
+;
+            finish();
         });
     }
 

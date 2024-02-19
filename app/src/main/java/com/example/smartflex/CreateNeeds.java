@@ -5,6 +5,7 @@ import static com.example.smartflex.Database.income;
 import static com.example.smartflex.Database.needsCategory;
 import static com.example.smartflex.Database.percentageNeeds;
 import static com.example.smartflex.Database.remainingNeeds;
+import static com.example.smartflex.Database.newCategory;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +31,19 @@ public class CreateNeeds extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_needs);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //add new item
+        if(newCategory != null){
+            needsCategory.add(newCategory);
+            newCategory = null;
+        }
         adapter = new CategoryRecyclerAdapter(getApplicationContext(), needsCategory);
+
 
         //get the amount of money we have in needs
         amountNeeds = percentageNeeds / 100.0f * income;
@@ -94,6 +107,7 @@ public class CreateNeeds extends AppCompatActivity {
                 startActivity(new Intent(CreateNeeds.this, createbudget_firstpage.class));
             }
         });
+
     }
 
     @Override

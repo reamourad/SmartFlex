@@ -2,6 +2,8 @@ package com.example.smartflex;
 
 import static com.example.smartflex.Database.amountSavings;
 import static com.example.smartflex.Database.income;
+import static com.example.smartflex.Database.needsCategory;
+import static com.example.smartflex.Database.newCategory;
 import static com.example.smartflex.Database.percentageSavings;
 import static com.example.smartflex.Database.remainingSavings;
 import static com.example.smartflex.Database.savingsCategory;
@@ -30,6 +32,17 @@ public class CreateSavings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_savings);
+
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        if(newCategory != null){
+            savingsCategory.add(newCategory);
+            newCategory = null;
+        }
         adapter = new CategoryRecyclerAdapter(getApplicationContext(), savingsCategory);
 
         //get the amount of money we have in wants
@@ -95,7 +108,6 @@ public class CreateSavings extends AppCompatActivity {
             }
         });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

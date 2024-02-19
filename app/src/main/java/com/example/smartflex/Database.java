@@ -22,4 +22,6 @@ public class Database {
     static List<Category> wantsCategory = new ArrayList<>();
     static List<Category> savingsCategory = new ArrayList<>();
 
+    static Category newCategory = null;
+
 }

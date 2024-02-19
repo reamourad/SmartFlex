@@ -2,6 +2,8 @@ package com.example.smartflex;
 
 import static com.example.smartflex.Database.amountWants;
 import static com.example.smartflex.Database.income;
+import static com.example.smartflex.Database.needsCategory;
+import static com.example.smartflex.Database.newCategory;
 import static com.example.smartflex.Database.percentageWants;
 import static com.example.smartflex.Database.remainingWants;
 import static com.example.smartflex.Database.wantsCategory;
@@ -30,6 +32,16 @@ public class CreateWants extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_wants);
+
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if(newCategory != null){
+            wantsCategory.add(newCategory);
+            newCategory = null;
+        }
         adapter = new CategoryRecyclerAdapter(getApplicationContext(), wantsCategory);
 
         //get the amount of money we have in wants
@@ -48,7 +60,7 @@ public class CreateWants extends AppCompatActivity {
         Button confirmButton = findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(v -> {
             if (remainingWants >= 0) {
-                startActivity(new Intent(CreateWants.this, MainActivity.class));
+                startActivity(new Intent(CreateWants.this, CreateSavings.class));
             }
         });
 
