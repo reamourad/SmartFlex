@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
-    static int percentageNeeds = 20;
+    static int percentageNeeds = 0;
     static float amountNeeds = 0;
     static float remainingNeeds = 0;
     static int percentageWants = 0;
@@ -14,7 +14,7 @@ public class Database {
     static float amountSavings = 0;
     static float remainingSavings = 0;
 
-    static int income = 1000;
+    static int income = 0;
     static Frequency incomeFrequency = Frequency.WEEKLY;
     static Frequency budgetFrequency = Frequency.WEEKLY;
 

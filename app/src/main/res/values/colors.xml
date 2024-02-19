@@ -9,5 +9,6 @@
     <color name="transparentBackground">#1E1E2D</color>
     <color name="pastelBlue">#9CB1D1</color>
     <color name="weirdpurple">#41415F</color>
+    <color name="cardBackground">#75C0D1</color>
 
 </resources>

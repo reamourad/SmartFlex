@@ -7,6 +7,7 @@ public class Category {
     String name;
     float cost;
     CostType costType;
+    float moneySpent;
     boolean showMenu;
 
     //constructor
@@ -16,6 +17,12 @@ public class Category {
         this.name = name;
         this.cost = cost;
         this.costType = costType;
+        if(costType == CostType.FIXED){
+            moneySpent = cost;
+        }
+        else{
+            moneySpent = 0;
+        }
         this.showMenu = showMenu;
     }
 }
