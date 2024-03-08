@@ -10,5 +10,7 @@
     <color name="pastelBlue">#9CB1D1</color>
     <color name="weirdpurple">#41415F</color>
     <color name="cardBackground">#75C0D1</color>
+    <color name="iconColor">#8B8B94</color>
+    <color name="iconColorSelected">#0066FF</color>
 
 </resources>
