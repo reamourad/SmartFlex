@@ -72,6 +72,9 @@ public class createbudget_firstpage extends AppCompatActivity {
                 if(ConfirmedString.getText() == "Confirmed"){
                     //go to next activity
                     startActivity(new Intent(createbudget_firstpage.this, CreateNeeds.class));
+//                    Intent intent = new Intent();
+
+
                 }
             }
         });
@@ -134,6 +137,19 @@ public class createbudget_firstpage extends AppCompatActivity {
         }
     }
 
+    private int convertFrequencyToNumber(Frequency frequency) {
+        switch (frequency) {
+            case WEEKLY:
+                return 7;
+            case MONTHLY:
+                return 30;
+            case YEARLY:
+                return 365;
+            default:
+                throw new IllegalArgumentException("Invalid frequency: " + frequency);
+        }
+    }
+
     private void checkIncome(Spinner dropdown4, TextView ConfirmedString){
         //get and check income
         EditText incomeInput = findViewById(R.id.incomeInput);
@@ -153,9 +169,15 @@ public class createbudget_firstpage extends AppCompatActivity {
             return;
         }
 
-        income = Integer.parseInt(incomeInputString);
+        int IF = convertFrequencyToNumber(incomeFrequency);
+        int bf = convertFrequencyToNumber(budgetFrequency);
+
+        income = Integer.parseInt(incomeInputString)/IF
+                *bf;
         incomeFrequency = convertStringToFrequency(selectedFrequency);
 
     }
+
+
 
 }
