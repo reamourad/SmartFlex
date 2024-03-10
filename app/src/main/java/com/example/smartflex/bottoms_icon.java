@@ -1,12 +1,18 @@
 package com.example.smartflex;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +30,11 @@ public class bottoms_icon extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private TextView homeText;
+    private ImageView homeIcon;
+
+    private TextView advisorText;
+    private ImageView advisorIcon;
     public bottoms_icon() {
         // Required empty public constructor
     }
@@ -58,7 +69,43 @@ public class bottoms_icon extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bottoms_icon, container, false);
+// Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_bottoms_icon, container, false);
+        //set the variables
+        homeIcon = v.findViewById(R.id.homeIcon);
+        homeText = v.findViewById(R.id.homeText);
+
+        advisorIcon = v.findViewById(R.id.advisorIcon);
+        advisorText = v.findViewById(R.id.advisorText);
+
+        //set the buttons
+        LinearLayout homeButton = v.findViewById(R.id.HomeLayout);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), MainActivity.class));
+            }
+        });
+
+        LinearLayout advisorButton = v.findViewById(R.id.AdvisorButton);
+        advisorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), FinancialAdvisor.class));
+            }
+        });
+        return v;
+    }
+
+    public void setColorHome(){
+        int tintColor = ContextCompat.getColor(getContext(), R.color.iconColorSelected);;
+        homeIcon.setColorFilter(tintColor);
+        homeText.setTextColor(tintColor);
+    }
+
+    public void setColorAdvisor(){
+        int tintColor = ContextCompat.getColor(getContext(), R.color.iconColorSelected);;
+        advisorIcon.setColorFilter(tintColor);
+        advisorText.setTextColor(tintColor);
     }
 }

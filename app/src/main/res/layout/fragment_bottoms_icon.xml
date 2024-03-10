@@ -18,9 +18,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:clickable="true"
+            android:id="@+id/HomeLayout">
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/homeIcon"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -29,7 +31,7 @@
                 android:layout_gravity="center"
                 />
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/homeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -70,9 +72,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="1"
+            android:id="@+id/AdvisorButton"
             >
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/advisorIcon"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -81,14 +84,14 @@
                 android:layout_gravity="center"
                 />
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/advisorText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:textSize="10dp"
-                android:text="Transactions"
+                android:text="Advisor"
                 android:textColor="@color/iconColor" />
         </LinearLayout>
         <LinearLayout
