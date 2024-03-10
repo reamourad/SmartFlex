@@ -18,8 +18,6 @@
         app:srcCompat="@drawable/arrow_ios_back"
         app:tint="@color/lightblue" />
 
-
-
     <TextView
         android:id="@+id/textView1"
         style="@android:style/TextAppearance.DeviceDefault.Medium"

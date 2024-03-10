@@ -7,109 +7,122 @@
     android:orientation="vertical"
     android:gravity="top"
     >
-
-    <Button
-        android:id="@+id/createbudgetButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Change your Budget"></Button>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Needs"
-        android:textColor="@color/white"
-        android:textSize="19dp"
-        android:gravity="center"
-        android:fontFamily="@font/poppins_medium"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="148dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wants"
-        android:textColor="@color/white"
-        android:textSize="19dp"
-        android:gravity="center"
-        android:fontFamily="@font/poppins_medium"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="match_parent"
-        android:layout_height="146dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Savings"
-        android:textColor="@color/white"
-        android:textSize="19dp"
-        android:gravity="center"
-        android:fontFamily="@font/poppins_medium"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="146dp"
-        android:id="@+id/recyclerView3"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="112dp"
-        android:layout_weight="1"
-        android:gravity="center|bottom"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+        <Button
+            android:id="@+id/createbudgetButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change your Budget"></Button>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Needs"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_medium"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="148dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wants"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_medium"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView2"
+            android:layout_width="match_parent"
+            android:layout_height="146dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Savings"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_medium"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:id="@+id/recyclerView3"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparentBackground"
-            android:padding="10dp">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Income:"
-                android:textColor="@color/pastelBlue"
-                android:textSize="14dp" />
-
-            <TextView
-                android:id="@+id/income"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="  200$"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                android:layout_marginRight="30dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Balance:"
-                android:textColor="@color/pastelBlue"
-                android:textSize="14dp" />
-
-            <TextView
-                android:id="@+id/balance"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="  200$"
-                android:textColor="@color/white"
-                android:textSize="14dp" />
+                android:background="@color/transparentBackground"
+                android:padding="10dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Income:"
+                    android:textColor="@color/pastelBlue"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="  200$"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Balance:"
+                    android:textColor="@color/pastelBlue"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="  200$"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
         </LinearLayout>
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
             android:name="com.example.smartflex.bottoms_icon"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_weight="1"
+            />
     </LinearLayout>
+
 </LinearLayout>

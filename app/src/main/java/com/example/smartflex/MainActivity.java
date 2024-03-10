@@ -6,6 +6,8 @@ import static com.example.smartflex.Database.savingsCategory;
 import static com.example.smartflex.Database.wantsCategory;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainer;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,10 +34,15 @@ public class MainActivity extends AppCompatActivity{
 
     private RecyclerView recyclerView;
     private CardRecyclerAdapter cardAdapter;
+    private  bottoms_icon BottomIconFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        BottomIconFragment = (bottoms_icon) fragmentManager.findFragmentById(R.id.fragmentContainerView);
+
 
         Button btn = (Button)findViewById(R.id.createbudgetButton);
 
@@ -106,7 +113,9 @@ public class MainActivity extends AppCompatActivity{
         balanceTextView.setText("$" + Float.toString(balance));
     }
 
-    public void goToCreateBudget(View v) {
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        BottomIconFragment.setColorHome();
     }
 }
