@@ -17,9 +17,18 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity{
+
+    FirebaseAuth auth;
+    Button button;
+    TextView textView;
+    FirebaseUser user;
 
     private RecyclerView recyclerView;
     private CardRecyclerAdapter cardAdapter;
@@ -29,6 +38,31 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         Button btn = (Button)findViewById(R.id.createbudgetButton);
+
+        //firebase
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        //for logout button
+        //logout button and textview
+        if(user == null){
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            textView.setText(user.getEmail());
+        }
+
+        //to logout
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(),Login.class);
+            startActivity(intent);
+            finish();
+            }
+        });
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
