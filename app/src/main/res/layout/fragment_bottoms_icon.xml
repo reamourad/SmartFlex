@@ -46,9 +46,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="1"
+            android:id="@+id/accountSettingsButton"
+            android:clickable="true"
             >
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/accountIcon"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -57,7 +59,7 @@
                 android:layout_gravity="center"
                 />
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/accountText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
