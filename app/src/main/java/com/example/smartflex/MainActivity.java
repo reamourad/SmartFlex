@@ -1,5 +1,6 @@
 package com.example.smartflex;
 
+import static com.example.smartflex.Database.balance;
 import static com.example.smartflex.Database.income;
 import static com.example.smartflex.Database.needsCategory;
 import static com.example.smartflex.Database.savingsCategory;
@@ -51,30 +52,9 @@ public class MainActivity extends AppCompatActivity{
         BottomIconFragment = (bottoms_icon) fragmentManager.findFragmentById(R.id.fragmentContainerView);
         Button btn = (Button)findViewById(R.id.createbudgetButton);
 
-        /*//firebase
+        //firebase
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        //for logout button
-        //logout button and textview
-        if(user == null){
-            Intent intent = new Intent(getApplicationContext(), Login.class);
-            startActivity(intent);
-            finish();
-        }
-        else{
-            textView.setText(user.getEmail());
-        }
-
-        //to logout
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(getApplicationContext(),Login.class);
-            startActivity(intent);
-            finish();
-            }
-        });*/
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +85,7 @@ public class MainActivity extends AppCompatActivity{
         TextView balanceTextView = findViewById(R.id.balance);
 
         incomeTextView.setText("$" + income);
-        float balance = income;
+        balance = income;
         for(Category category : needsCategory){
             balance -= category.moneySpent;
         }

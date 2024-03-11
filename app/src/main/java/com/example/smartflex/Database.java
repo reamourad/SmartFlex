@@ -16,6 +16,7 @@ public class Database {
     static float remainingSavings = 0;
 
     static int income = 0;
+    static float balance = 0;
     static Frequency incomeFrequency = Frequency.WEEKLY;
     static Frequency budgetFrequency = Frequency.WEEKLY;
 

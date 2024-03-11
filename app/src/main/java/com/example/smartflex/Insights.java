@@ -1,7 +1,10 @@
 package com.example.smartflex;
 
+import static com.example.smartflex.Database.balance;
 import static com.example.smartflex.Database.income;
 import static com.example.smartflex.Database.needsCategory;
+import static com.example.smartflex.Database.savingsCategory;
+import static com.example.smartflex.Database.wantsCategory;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -51,17 +54,26 @@ public class Insights extends AppCompatActivity {
 
         //initializing data
         Map<String, Integer> typeAmountMap = new HashMap<>();
-//        typeAmountMap.put("Toys",200);
-//        typeAmountMap.put("Snacks",230);
-//        typeAmountMap.put("Clothes",100);
-//        typeAmountMap.put("Stationary",500);
-//        typeAmountMap.put("Phone",50);
-
+        ArrayList<Integer> colors = new ArrayList<>();
         for(Category category : needsCategory){
             typeAmountMap.put(category.name, (int)category.cost);
         }
+        for(Category category : wantsCategory){
+            typeAmountMap.put(category.name, (int)category.cost);
+        }
+        for(Category category : savingsCategory){
+            typeAmountMap.put(category.name, (int)category.cost);
+        }
+        typeAmountMap.put("Leftover", (int)balance);
         //initializing colors for the entries
-        ArrayList<Integer> colors = new ArrayList<>();
+
+        colors.add(Color.parseColor("#304567"));
+        colors.add(Color.parseColor("#309967"));
+        colors.add(Color.parseColor("#476567"));
+        colors.add(Color.parseColor("#890567"));
+        colors.add(Color.parseColor("#a35567"));
+        colors.add(Color.parseColor("#ff5f67"));
+        colors.add(Color.parseColor("#3ca567"));
         colors.add(Color.parseColor("#304567"));
         colors.add(Color.parseColor("#309967"));
         colors.add(Color.parseColor("#476567"));
@@ -83,8 +95,10 @@ public class Insights extends AppCompatActivity {
         pieDataSet.setColors(colors);
         //grouping the data set from entry to chart
         PieData pieData = new PieData(pieDataSet);
+        pieChart.setUsePercentValues(true);
         //showing the value of the entries, default true if not set
         pieData.setDrawValues(true);
+
 
         pieChart.setData(pieData);
         pieChart.invalidate();
@@ -110,6 +124,7 @@ public class Insights extends AppCompatActivity {
         pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         //setting the color of the hole in the middle, default white
         pieChart.setHoleColor(Color.parseColor("#000000"));
+
 
     }
 }
