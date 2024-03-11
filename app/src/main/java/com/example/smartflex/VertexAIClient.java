@@ -46,7 +46,6 @@ public class VertexAIClient {
             return ""; // No prompt if income is zero
         }
 
-
         // Check if any financial goals have been set
         boolean hasGoals = amountNeeds > 0 || amountWants > 0 || amountSavings > 0;
 
