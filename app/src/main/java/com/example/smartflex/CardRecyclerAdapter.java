@@ -1,7 +1,5 @@
 package com.example.smartflex;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -32,7 +30,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v;
-        v= LayoutInflater.from(parent.getContext()).inflate(R.layout.category_card_recycler, parent, false);
+        v= LayoutInflater.from(parent.getContext()).inflate(R.layout.category_card, parent, false);
         return new CardViewHolder(v);
     }
 

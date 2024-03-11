@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "smart-flex",
+  "private_key_id": "3f2a29f1ed9d92fefa5d7f1b07a51e4989f3169a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCzFQwGi8URcQtC\nDRQ2CDBVvKLCCD+LbEBu3/0Bq7aRxB//tvPlTp0Kg2fCKIpjWrh2NBUVSK7w7SsK\nkRc3vkdRs9E+6yeWTkSWKYdEmHUrntQhdg54uW3k74Q0jbB797Zmbr6d7j9SP4rt\nFjgUO5aNAhQX5RYthcV1gDVV4nHNHsmEW5na/zrIWpbaQSbIh7seDKquXKElglVh\nPNeCwgPE+DoneA7R5uEkcY38+m6grW4M26SbbQ2ygHesNVU7dBWYFzSsgdOndpAd\nNEViheHAKWK1LIPcWdAz8G9RiLWBp1aeFPiOkP8WTnu+Jy74eDZxzXkbFp6z/iUb\nayaJbaitAgMBAAECggEAAvSoTnyvaPqeU/MWpU78n+hNdg8Kysijm5uIzSaXYc/Z\n3gTtVkM2O6kwOjfPE5VjZq1fYmA2ZaA/I0fXw+zDt+kph/SmTPMdFgQOHny3BQb0\nZgT7zNRKqF+npUe9ZPO8B/QbTfdTsON+7dYoYMpxpqwlHBaE3NrQsoAbi+pWidXJ\ngUAGApbVr5tzwXZr1dvsyrjtSKJmBg72smI+8EJ20CKH0bmq865xYilPPvtz7QzC\nOgTSenW47hQQ+KoSsBZtrBEt1PDz3bd0nZnEO2HGG6AJqNAeCoGswZDC7u7GWf3f\nMtkhI3HUMXIhqOxiFXK3ekwaDwlaDuHyukvrVGUjRQKBgQDhYMjQ7ufFd4HRpMn+\n/QD0+jdosEwqx3v2PTvzxwoOYZfFaSoPhekxakCf+Ah4mQkyuhavOU0K3o7ocMxu\np9Gu85cBz0vzqA4wVKwFShxnW7WBToXE6sbB1U4acM64DJWJpCCX0YD16QsjL8v3\nx3zHRh8HpODu7CsBcP1eSbV+ZwKBgQDLafn9tnuVjm143OiHlKzhwZoWoKd2Bb/S\njeNjGdGUrzAvkx16IDEvyBHUT5Frsc3mQMVQb2j4srtFYBVZ4HJBclyQZl+TKFrO\nI1LhjJ3TDMVOnvQDquB26/ZjyBpTvXAwDOO8MdQV+JDzAsnlvL6gjYbBgMNF2pln\nnIx68MwLywKBgQCeMsOC9M83aqVzNIqdM5ZiXuhZ0bYFKTU4KM9WVFYYtiREa4cc\nklCXYQ+vufioPjOYqcqWgFA12vbQ7axx19Z1SYKrwIh9pW8gOa7tn5HEczk6ZJW9\nHVcaY9GI+boAssScctp19pbhBg3NSxWO/TX24p+RTAifbKLbRiZy8qY07QKBgBuc\nhxKpcp0aeEGvuuCsjcsXPJNVu2WJ4j/ygqsxFgHYxfGvRpENTZ/uyHzJUDQOLqTS\npfYFKXqYyFLieAN7NAcuPuJbAx42nBzfLqDvNX0wfpfte7IDv/Rkk014HBrB3Dip\nh0BEg0V4ODTEbCODO10P2PrrP5Z71db6qRcHGKuBAoGANTsVQG2R4T3XY6JSnRmH\nHAabcqWzdhA/4b+UPo8prlzVilUl9qIz6/lI0WTR4XtYTE8BddJpBdBQXb1bw4Lg\np/eSG5VK00yRX4N86LxeCWXnhoujS8jHWndPDObKhcfoKDhKT81WoIxfxmu+U0UZ\nc3cNkCZcLCFm0/zlG5Jf1ws=\n-----END PRIVATE KEY-----\n",
+  "client_email": "vertex-serviceaccount@smart-flex.iam.gserviceaccount.com",
+  "client_id": "108553467441533822255",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vertex-serviceaccount%40smart-flex.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
