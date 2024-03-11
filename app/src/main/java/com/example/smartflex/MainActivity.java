@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity{
 
         Button btn = (Button)findViewById(R.id.createbudgetButton);
 
-        //firebase
+        /*//firebase
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         //for logout button
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity{
             startActivity(intent);
             finish();
             }
-        });
+        });*/
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -46,6 +46,36 @@ public class createbudget_firstpage extends AppCompatActivity {
         dropdown4.setAdapter(adapter2);
         dropdown5.setAdapter(adapter2);
 
+// Loop through adapter items and set selections for each spinner
+        for (int i = 0; i < adapter.getCount(); i++) {
+            String item = adapter.getItem(i);
+
+            if (item.equals(percentageNeeds + "%")) {
+                dropdown.setSelection(i);
+            }
+
+            if (item.equals(percentageWants + "%")) {
+                dropdown2.setSelection(i);
+            }
+
+            if (item.equals(percentageSavings + "%")) {
+                dropdown3.setSelection(i);
+            }
+        }
+
+        // Map frequencies to adapter positions (assuming enum order matches adapter)
+        int incomeFrequencyPosition = incomeFrequency.ordinal() + 1;
+        int budgetFrequencyPosition = budgetFrequency.ordinal() + 1;
+
+        // Set selections for spinners using adapter2
+        dropdown4.setSelection(incomeFrequencyPosition);
+        dropdown5.setSelection(budgetFrequencyPosition);
+
+        EditText incomeInput = findViewById(R.id.incomeInput);
+        incomeInput.setText(Integer.toString(income));
+
+
+
         //Go back to the last page
         ImageView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -172,8 +202,7 @@ public class createbudget_firstpage extends AppCompatActivity {
         int IF = convertFrequencyToNumber(incomeFrequency);
         int bf = convertFrequencyToNumber(budgetFrequency);
 
-        income = Integer.parseInt(incomeInputString)/IF
-                *bf;
+        income = Integer.parseInt(incomeInputString)/(IF/bf);
         incomeFrequency = convertStringToFrequency(selectedFrequency);
 
     }

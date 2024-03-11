@@ -19,7 +19,6 @@ public class FinancialAdvisor extends AppCompatActivity {
     private  bottoms_icon BottomIconFragment;
 
     RecyclerView recyclerView;
-    TextView welcomeTextView;
     EditText messageEditText;
     ImageButton sendButton;
     List<Message> messageList;
