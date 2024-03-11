@@ -38,6 +38,10 @@ public class bottoms_icon extends Fragment {
 
     private TextView accountText;
     private ImageView accountIcon;
+
+    private TextView insightText;
+    private ImageView insightIcon;
+
     public bottoms_icon() {
         // Required empty public constructor
     }
@@ -84,6 +88,9 @@ public class bottoms_icon extends Fragment {
         accountIcon = v.findViewById(R.id.accountIcon);
         accountText = v.findViewById(R.id.accountText);
 
+        insightIcon = v.findViewById(R.id.insightIcon);
+        insightText = v.findViewById(R.id.insightText);
+
         //set the buttons
         LinearLayout homeButton = v.findViewById(R.id.HomeLayout);
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +115,14 @@ public class bottoms_icon extends Fragment {
                 startActivity(new Intent(getContext(), AccountSettings.class));
             }
         });
+
+        LinearLayout insightButton = v.findViewById(R.id.insightButton);
+        insightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), Insights.class));
+            }
+        });
         return v;
     }
 
@@ -127,5 +142,11 @@ public class bottoms_icon extends Fragment {
         int tintColor = ContextCompat.getColor(getContext(), R.color.iconColorSelected);;
         accountIcon.setColorFilter(tintColor);
         accountText.setTextColor(tintColor);
+    }
+
+    public void setColorInsight(){
+        int tintColor = ContextCompat.getColor(getContext(), R.color.iconColorSelected);;
+        insightIcon.setColorFilter(tintColor);
+        insightText.setTextColor(tintColor);
     }
 }

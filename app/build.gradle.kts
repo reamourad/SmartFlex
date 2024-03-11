@@ -23,6 +23,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -38,6 +39,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
@@ -52,4 +54,7 @@ dependencies {
     implementation (platform("com.google.cloud:libraries-bom:26.34.0"))
     implementation ("com.google.cloud:google-cloud-vertexai")
     implementation ("io.grpc:grpc-okhttp:1.62.0")
+
+    // Include MPAndroidChart library
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.0.3")
 }
