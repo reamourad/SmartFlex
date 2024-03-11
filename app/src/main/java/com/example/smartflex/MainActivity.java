@@ -18,12 +18,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.ResponseHandler;
 
 import org.w3c.dom.Text;
+
+import java.util.Base64;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -40,10 +46,9 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         BottomIconFragment = (bottoms_icon) fragmentManager.findFragmentById(R.id.fragmentContainerView);
-
-
         Button btn = (Button)findViewById(R.id.createbudgetButton);
 
         /*//firebase
