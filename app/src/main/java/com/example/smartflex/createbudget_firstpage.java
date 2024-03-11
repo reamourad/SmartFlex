@@ -46,6 +46,36 @@ public class createbudget_firstpage extends AppCompatActivity {
         dropdown4.setAdapter(adapter2);
         dropdown5.setAdapter(adapter2);
 
+// Loop through adapter items and set selections for each spinner
+        for (int i = 0; i < adapter.getCount(); i++) {
+            String item = adapter.getItem(i);
+
+            if (item.equals(percentageNeeds + "%")) {
+                dropdown.setSelection(i);
+            }
+
+            if (item.equals(percentageWants + "%")) {
+                dropdown2.setSelection(i);
+            }
+
+            if (item.equals(percentageSavings + "%")) {
+                dropdown3.setSelection(i);
+            }
+        }
+
+        // Map frequencies to adapter positions (assuming enum order matches adapter)
+        int incomeFrequencyPosition = incomeFrequency.ordinal() + 1;
+        int budgetFrequencyPosition = budgetFrequency.ordinal() + 1;
+
+        // Set selections for spinners using adapter2
+        dropdown4.setSelection(incomeFrequencyPosition);
+        dropdown5.setSelection(budgetFrequencyPosition);
+
+        EditText incomeInput = findViewById(R.id.incomeInput);
+        incomeInput.setText(Integer.toString(income));
+
+
+
         //Go back to the last page
         ImageView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +102,9 @@ public class createbudget_firstpage extends AppCompatActivity {
                 if(ConfirmedString.getText() == "Confirmed"){
                     //go to next activity
                     startActivity(new Intent(createbudget_firstpage.this, CreateNeeds.class));
+//                    Intent intent = new Intent();
+
+
                 }
             }
         });
@@ -134,6 +167,19 @@ public class createbudget_firstpage extends AppCompatActivity {
         }
     }
 
+    private int convertFrequencyToNumber(Frequency frequency) {
+        switch (frequency) {
+            case WEEKLY:
+                return 7;
+            case MONTHLY:
+                return 30;
+            case YEARLY:
+                return 365;
+            default:
+                throw new IllegalArgumentException("Invalid frequency: " + frequency);
+        }
+    }
+
     private void checkIncome(Spinner dropdown4, TextView ConfirmedString){
         //get and check income
         EditText incomeInput = findViewById(R.id.incomeInput);
@@ -153,9 +199,14 @@ public class createbudget_firstpage extends AppCompatActivity {
             return;
         }
 
-        income = Integer.parseInt(incomeInputString);
+        int IF = convertFrequencyToNumber(incomeFrequency);
+        int bf = convertFrequencyToNumber(budgetFrequency);
+
+        income = Integer.parseInt(incomeInputString)/(IF/bf);
         incomeFrequency = convertStringToFrequency(selectedFrequency);
 
     }
+
+
 
 }

@@ -6,6 +6,8 @@ import static com.example.smartflex.Database.savingsCategory;
 import static com.example.smartflex.Database.wantsCategory;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainer;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,19 +18,63 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
+
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.ResponseHandler;
 
 import org.w3c.dom.Text;
 
+import java.util.Base64;
+
 public class MainActivity extends AppCompatActivity{
+
+    FirebaseAuth auth;
+    Button button;
+    TextView textView;
+    FirebaseUser user;
 
     private RecyclerView recyclerView;
     private CardRecyclerAdapter cardAdapter;
+    private  bottoms_icon BottomIconFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        BottomIconFragment = (bottoms_icon) fragmentManager.findFragmentById(R.id.fragmentContainerView);
         Button btn = (Button)findViewById(R.id.createbudgetButton);
+
+        /*//firebase
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        //for logout button
+        //logout button and textview
+        if(user == null){
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            textView.setText(user.getEmail());
+        }
+
+        //to logout
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(),Login.class);
+            startActivity(intent);
+            finish();
+            }
+        });*/
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +118,9 @@ public class MainActivity extends AppCompatActivity{
         balanceTextView.setText("$" + Float.toString(balance));
     }
 
-    public void goToCreateBudget(View v) {
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        BottomIconFragment.setColorHome();
     }
 }

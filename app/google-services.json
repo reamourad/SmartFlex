@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1038998387615",
+    "project_id": "smart-flex",
+    "storage_bucket": "smart-flex.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038998387615:android:ca2413fc229a6be12d5baa",
+        "android_client_info": {
+          "package_name": "com.example.smartflex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038998387615-dtrv5agij488eble2c04o5405pscekda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGDnY8lWkVD5GoKWB5gRxNPpnGvyB1S2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038998387615-dtrv5agij488eble2c04o5405pscekda.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
