@@ -2,6 +2,8 @@ package com.example.smartflex;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import static com.example.smartflex.Database.transferGuestDataToRealtimeDatabase;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -93,6 +95,7 @@ public class SignUp extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Toast.makeText(SignUp.this, "Account created.",
                                             Toast.LENGTH_SHORT).show();
+                                    transferGuestDataToRealtimeDatabase(task.getResult().getUser().getUid());
                                     Intent intent= new Intent(SignUp.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
