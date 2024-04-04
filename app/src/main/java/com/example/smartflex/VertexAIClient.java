@@ -66,8 +66,6 @@ public class VertexAIClient {
                     .append("), and savings (total: $")
                     .append(amountSavings)
                     .append("). ");
-        } else {
-            promptBuilder.append("The client has not set any financial goals yet. ");
         }
         promptBuilder.append("Use this information if it is relevant to the following question: ");
 
