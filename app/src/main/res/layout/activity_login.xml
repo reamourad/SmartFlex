@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    android:background="@color/blue"    tools:context=".Login">
 
 
     <TextView
@@ -16,6 +16,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:padding="15dp"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -25,6 +26,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/Email"
             android:hint="@string/email"
+            android:textColorHint="@color/pastelBlue"
+            android:textSize="16dp"
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -35,6 +38,8 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Password"
         android:hint="@string/password"
+        android:textSize="16dp"
+        android:textColorHint="@color/pastelBlue"
         android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -50,7 +55,8 @@
         android:text="@string/login"
         android:textAlignment="center"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
 
@@ -59,10 +65,11 @@
         android:id="@+id/signUpNow"
         android:text="@string/create_an_account"
         android:layout_margin="10dp"
+        android:textColor="@color/white"
         android:padding="5dp"
         android:gravity="center"
         android:textAlignment="inherit"
-        android:textSize="15sp"
+        android:textSize="12dp"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

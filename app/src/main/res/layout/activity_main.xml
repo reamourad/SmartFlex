@@ -12,19 +12,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="15dp">
-        <Button
-            android:id="@+id/createbudgetButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Change your Budget"></Button>\
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Needs"
             android:textColor="@color/white"
-            android:textSize="19dp"
+            android:textSize="22dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
+
             android:fontFamily="@font/poppins_medium"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -36,7 +35,9 @@
             android:layout_height="wrap_content"
             android:text="Wants"
             android:textColor="@color/white"
-            android:textSize="19dp"
+            android:textSize="22dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:fontFamily="@font/poppins_medium"/>
 
@@ -50,7 +51,9 @@
             android:layout_height="wrap_content"
             android:text="Savings"
             android:textColor="@color/white"
-            android:textSize="19dp"
+            android:textSize="22dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:fontFamily="@font/poppins_medium"/>
 
@@ -85,7 +88,7 @@
                     android:id="@+id/income"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="100dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="  200$"
                     android:textColor="@color/white"
@@ -107,9 +110,16 @@
                     android:fontFamily="@font/poppins_bold"
                     android:text="  200$"
                     android:textColor="@color/white"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    />
+
 
             </LinearLayout>
+            <Button
+                android:id="@+id/createbudgetButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Change your Budget"></Button>\
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,42 +30,73 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignUp extends AppCompatActivity {
 
 
-        TextInputEditText editTextEmail, editTextPassword;
-        Button buttonSignUp;
-        FirebaseAuth mAuth;
-        ProgressBar progressBar;
-        TextView textView;
+    TextInputEditText editTextEmail, editTextPassword;
+    Button buttonSignUp;
+    FirebaseSingelton firebaseSingelton;
+    ProgressBar progressBar;
+    TextView textView;
+
+    private PasswordStrengthIndicator passwordStrengthIndicator;
+
+
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent= new Intent(getApplicationContext(),MainActivity.class);
+        FirebaseUser currentUser = firebaseSingelton.getFirebaseAuth().getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        mAuth=FirebaseAuth.getInstance();
+        firebaseSingelton = FirebaseSingelton.getInstance();
         editTextEmail = findViewById(R.id.Email);
         editTextPassword = findViewById(R.id.Password);
         buttonSignUp = findViewById(R.id.signUpButton);
         progressBar = findViewById(R.id.progressBar);
-        textView =  findViewById(R.id.loginNow);
+        textView = findViewById(R.id.loginNow);
 
-      textView.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              Intent intent= new Intent(getApplicationContext(), Login.class);
-              startActivity(intent);
-              finish();
+        passwordStrengthIndicator = new PasswordStrengthIndicator();
+        passwordStrengthIndicator.addObserver((PasswordStrengthObserver) this);
 
-          }
-      });
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+                finish();
+
+            }
+
+        });
+        editTextPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String password = charSequence.toString();
+
+                //notify the observer about the change
+                passwordStrengthIndicator.notifyObservers((checkPasswordSrength(password)));
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+
+        });
+
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,18 +108,18 @@ public class SignUp extends AppCompatActivity {
 
 
                 //check if the email is empty
-                if(TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
                     Toast.makeText(SignUp.this, "Enter your email", Toast.LENGTH_SHORT).show();
                     return;
 
                 }
                 //check if the password is empty
-                if(TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
                     Toast.makeText(SignUp.this, "Enter your password", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //assign user
-                mAuth.createUserWithEmailAndPassword(email, password)
+                firebaseSingelton.getFirebaseAuth().createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -96,7 +129,7 @@ public class SignUp extends AppCompatActivity {
                                     Toast.makeText(SignUp.this, "Account created.",
                                             Toast.LENGTH_SHORT).show();
                                     transferGuestDataToRealtimeDatabase(task.getResult().getUser().getUid());
-                                    Intent intent= new Intent(SignUp.this, MainActivity.class);
+                                    Intent intent = new Intent(SignUp.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
@@ -108,5 +141,27 @@ public class SignUp extends AppCompatActivity {
                         });
             }
         });
+
     }
+
+    private String checkPasswordSrength(String password) {
+
+        if (password.length() < 6) {
+            return "Week";
+
+        } else if (password.length() < 10) {
+            return "Medium";
+
+        }else {
+            return "Strong";
+
+        }
+
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        passwordStrengthIndicator.removeObserver((PasswordStrengthObserver) this);
+    }
+
 }
