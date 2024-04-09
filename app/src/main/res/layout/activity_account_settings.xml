@@ -15,6 +15,15 @@
         android:layout_weight="0"
         android:layout_marginVertical="10dp"
         />
+
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log In"
+        android:layout_weight="0"
+        android:layout_marginVertical="10dp"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -32,5 +32,13 @@ public class AccountSettings extends AppCompatActivity {
                 startActivity(new Intent(AccountSettings.this, SignUp.class));
             }
         });
+
+        Button logInButton = findViewById(R.id.logInButton);
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AccountSettings.this, Login.class));
+            }
+        });
     }
 }

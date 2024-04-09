@@ -5,13 +5,13 @@ import java.util.UUID;
 public class Category implements Serializable{
     //icon, name, cost, costtype
     private static final long serialVersionUID = 1L;
-    String id;
-    int icon;
-    String name;
-    float cost;
-    CostType costType;
-    float moneySpent;
-    boolean showMenu;
+    public String id;
+    public int icon;
+    public String name;
+    public float cost;
+    public CostType costType;
+    public float moneySpent;
+    public boolean showMenu;
 
     //constructor
     // Constructor

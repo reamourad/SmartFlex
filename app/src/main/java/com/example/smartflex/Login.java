@@ -2,6 +2,8 @@ package com.example.smartflex;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import static com.example.smartflex.Database.fetchUserDataFromRealtimeDatabase;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -81,6 +83,7 @@ public class Login extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Login.this, "Login Successful.",
                                             Toast.LENGTH_SHORT).show();
+                                    fetchUserDataFromRealtimeDatabase(task.getResult().getUser().getUid());
                                     Intent intent= new Intent(getApplicationContext(),MainActivity.class);
                                     startActivity(intent);
                                     finish();
