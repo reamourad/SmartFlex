@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Database {
+    static boolean isFirstLaunch = true;
     static int percentageNeeds = 0;
     static float amountNeeds = 0;
     static float remainingNeeds = 0;
@@ -74,6 +75,7 @@ public class Database {
         userData.put("remainingWants", remainingWants);
         userData.put("percentageSaving", percentageSavings);
         userData.put("amountSavings", amountSavings);
+        userData.put("remainingSavings", remainingSavings);
         userData.put("income", income);
         userData.put("balance", balance);
         userData.put("incomeFrequency", incomeFrequency);
@@ -83,15 +85,41 @@ public class Database {
         HashMap<String, Object> categoriesData = new HashMap<>();
         // Store needs categories
         for (Category category : needsCategory) {
-            categoriesData.put(category.id, category);
+            // Add category with type "needs"
+            HashMap<String, Object> categoryData = new HashMap<>();
+            categoryData.put("icon", category.icon);
+            categoryData.put("name", category.name);
+            categoryData.put("cost", category.cost);
+            categoryData.put("costType", category.costType);
+            categoryData.put("showMenu", category.showMenu);
+            categoryData.put("categoryType", "needs"); // Add category type
+            categoriesData.put(category.id, categoryData);
         }
-        // Store wants categories
+
+// Store wants categories
         for (Category category : wantsCategory) {
-            categoriesData.put(category.id, category);
+            // Add category with type "wants"
+            HashMap<String, Object> categoryData = new HashMap<>();
+            categoryData.put("icon", category.icon);
+            categoryData.put("name", category.name);
+            categoryData.put("cost", category.cost);
+            categoryData.put("costType", category.costType);
+            categoryData.put("showMenu", category.showMenu);
+            categoryData.put("categoryType", "wants"); // Add category type
+            categoriesData.put(category.id, categoryData);
         }
-        // Store savings categories
+
+// Store savings categories
         for (Category category : savingsCategory) {
-            categoriesData.put(category.id, category);
+            // Add category with type "savings"
+            HashMap<String, Object> categoryData = new HashMap<>();
+            categoryData.put("icon", category.icon);
+            categoryData.put("name", category.name);
+            categoryData.put("cost", category.cost);
+            categoryData.put("costType", category.costType);
+            categoryData.put("showMenu", category.showMenu);
+            categoryData.put("categoryType", "savings"); // Add category type
+            categoriesData.put(category.id, categoryData);
         }
 
         userData.put("categories", categoriesData);
@@ -100,93 +128,72 @@ public class Database {
     }
 
     // Function to fetch user data from Realtime Database
-    static public void fetchUserDataFromRealtimeDatabase(String userId) {
-        // Get a reference to the user's Realtime Database location
+    static public void fetchUserDataFromRealtimeDatabase(String userId, final OnDataFetchedListener listener) {
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users/" + userId);
 
-        // Listen for changes in the user's data
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Check if data exists for the user
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    // Retrieve user data
-                    Map<String, Object> userDataMap = (Map<String, Object>) dataSnapshot.getValue();
-                    if (userDataMap != null) {
-                        // Update local variables with user data
-                        percentageNeeds = userDataMap.get("needsPercentage") != null ? (int) (long) userDataMap.get("needsPercentage") : 0;
-                        amountNeeds = userDataMap.get("amountNeeds") != null ? Float.parseFloat(userDataMap.get("amountNeeds").toString()) : 0;
-                        remainingNeeds = userDataMap.get("remainingNeeds") != null ? Float.parseFloat(userDataMap.get("remainingNeeds").toString()) : 0;
-                        percentageWants = userDataMap.get("percentageWants") != null ? (int) (long) userDataMap.get("percentageWants") : 0;
-                        amountWants = userDataMap.get("amountWants") != null ? Float.parseFloat(userDataMap.get("amountWants").toString()) : 0;
-                        remainingWants = userDataMap.get("remainingWants") != null ? Float.parseFloat(userDataMap.get("remainingWants").toString()) : 0;
-                        percentageSavings = userDataMap.get("percentageSaving") != null ? (int) (long) userDataMap.get("percentageSaving") : 0;
-                        amountSavings = userDataMap.get("amountSavings") != null ? Float.parseFloat(userDataMap.get("amountSavings").toString()) : 0;
-                        remainingSavings = userDataMap.get("remainingSavings") != null ? Float.parseFloat(userDataMap.get("remainingSavings").toString()) : 0;
-                        income = userDataMap.get("income") != null ? (int) (long) userDataMap.get("income") : 0;
-                        balance = userDataMap.get("balance") != null ? Float.parseFloat(userDataMap.get("balance").toString()) : 0;
+                    HashMap<String, Object> userData = (HashMap<String, Object>) dataSnapshot.getValue();
+                    percentageNeeds = (int) (long) userData.get("needsPercentage");
+                    amountNeeds = Float.parseFloat(userData.get("amountNeeds").toString());
+                    remainingNeeds = Float.parseFloat(userData.get("remainingNeeds").toString());
+                    percentageWants = (int) (long) userData.get("percentageWants");
+                    amountWants = Float.parseFloat(userData.get("amountWants").toString());
+                    remainingWants = Float.parseFloat(userData.get("remainingWants").toString());
+                    percentageSavings = (int) (long) userData.get("percentageSaving");
+                    amountSavings = Float.parseFloat(userData.get("amountSavings").toString());
+                    remainingSavings = Float.parseFloat(userData.get("remainingSavings").toString());
+                    income = (int) (long) userData.get("income");
+                    balance = Float.parseFloat(userData.get("balance").toString());
 
-                        // Convert incomeFrequency to Frequency enum
-                        if (userDataMap.get("incomeFrequency") != null) {
-                            try {
-                                incomeFrequency = Frequency.valueOf(userDataMap.get("incomeFrequency").toString());
-                            } catch (IllegalArgumentException e) {
-                                incomeFrequency = Frequency.WEEKLY; // Default value if conversion fails
-                            }
-                        } else {
-                            incomeFrequency = Frequency.WEEKLY; // Default value if data is null
-                        }
+                    // Retrieve and update categories
+                    Map<String, Object> categoriesData = (Map<String, Object>) userData.get("categories");
+                    if (categoriesData != null) {
+                        for (Map.Entry<String, Object> entry : categoriesData.entrySet()) {
+                            // Parse category data and add to appropriate list
+                            Map<String, Object> categoryMap = (Map<String, Object>) entry.getValue();
+                            String name = categoryMap.get("name").toString();
+                            int icon = Integer.parseInt(categoryMap.get("icon").toString());
+                            float cost = Float.parseFloat(categoryMap.get("cost").toString());
+                            CostType costType = CostType.valueOf(categoryMap.get("costType").toString());
+                            boolean showMenu = (boolean) categoryMap.get("showMenu");
+                            Category category = new Category(icon, name, cost, costType, showMenu);
+                            needsCategory.clear();
+                            wantsCategory.clear();
+                            savingsCategory.clear();
 
-                        // Convert budgetFrequency to Frequency enum
-                        if (userDataMap.get("budgetFrequency") != null) {
-                            try {
-                                budgetFrequency = Frequency.valueOf(userDataMap.get("budgetFrequency").toString());
-                            } catch (IllegalArgumentException e) {
-                                budgetFrequency = Frequency.WEEKLY; // Default value if conversion fails
-                            }
-                        } else {
-                            budgetFrequency = Frequency.WEEKLY; // Default value if data is null
-                        }
-
-                        // Retrieve and update categories
-                        Map<String, Object> categoriesData = (Map<String, Object>) userDataMap.get("categories");
-                        if (categoriesData != null) {
-                            for (Map.Entry<String, Object> entry : categoriesData.entrySet()) {
-                                // Parse category data and add to appropriate list
-                                Map<String, Object> categoryMap = (Map<String, Object>) entry.getValue();
-                                String name = categoryMap.get("name").toString();
-                                int icon = Integer.parseInt(categoryMap.get("icon").toString());
-                                float cost = Float.parseFloat(categoryMap.get("cost").toString());
-                                CostType costType = CostType.valueOf(categoryMap.get("costType").toString());
-                                boolean showMenu = (boolean) categoryMap.get("showMenu");
-                                Category category = new Category(icon, name, cost, costType, showMenu);
-
-                                // Determine which list to add the category to based on its type
-                                String categoryType = categoryMap.get("categoryType").toString();
-                                switch (categoryType) {
-                                    case "needs":
-                                        needsCategory.add(category);
-                                        break;
-                                    case "wants":
-                                        wantsCategory.add(category);
-                                        break;
-                                    case "savings":
-                                        savingsCategory.add(category);
-                                        break;
-                                    default:
-                                        // Handle unknown category type
-                                        break;
-                                }
+                            // Determine which list to add the category to based on its type
+                            String categoryType = categoryMap.get("categoryType").toString();
+                            switch (categoryType) {
+                                case "needs":
+                                    needsCategory.add(category);
+                                    break;
+                                case "wants":
+                                    wantsCategory.add(category);
+                                    break;
+                                case "savings":
+                                    savingsCategory.add(category);
+                                    break;
+                                default:
+                                    // Handle unknown category type
+                                    break;
                             }
                         }
                     }
+                    listener.onDataFetched();
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle database error
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
+
         });
+
     }
+
 }
+

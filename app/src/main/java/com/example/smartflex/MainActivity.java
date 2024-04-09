@@ -2,6 +2,7 @@ package com.example.smartflex;
 
 import static com.example.smartflex.Database.balance;
 import static com.example.smartflex.Database.income;
+import static com.example.smartflex.Database.isFirstLaunch;
 import static com.example.smartflex.Database.needsCategory;
 import static com.example.smartflex.Database.savingsCategory;
 import static com.example.smartflex.Database.wantsCategory;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
@@ -64,6 +66,24 @@ public class MainActivity extends AppCompatActivity{
         //firebase
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        if(Database.isFirstLaunch == true){
+            isFirstLaunch = false;
+            Database.fetchUserDataFromRealtimeDatabase(user.getUid(), new OnDataFetchedListener() {
+                @Override
+                public void onDataFetched() {
+
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+
+                }
+            });
+        }
+        if(user != null){
+            Database.transferGuestDataToRealtimeDatabase(user.getUid());
+        }
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -82,19 +82,25 @@ public class Login extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(Login.this, "Login Successful.",
-                                            Toast.LENGTH_SHORT).show();
-                                    fetchUserDataFromRealtimeDatabase(task.getResult().getUser().getUid());
-                                    Intent intent= new Intent(getApplicationContext(),MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    Toast.makeText(Login.this, "Login Successful.", Toast.LENGTH_SHORT).show();
+                                    fetchUserDataFromRealtimeDatabase(task.getResult().getUser().getUid(), new OnDataFetchedListener() {
+                                        @Override
+                                        public void onDataFetched() {
+                                            // Data fetched successfully, navigate to MainActivity
+                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent);
+                                            finish(); // Finish the login activity
+                                        }
 
+                                        @Override
+                                        public void onError(String errorMessage) {
+                                            // Handle error if data fetching fails
+                                            Toast.makeText(Login.this, errorMessage, Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
                                 } else {
                                     // If sign in fails, display a message to the user.
-
-                                    Toast.makeText(Login.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-
+                                    Toast.makeText(Login.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

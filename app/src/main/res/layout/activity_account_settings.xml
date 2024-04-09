@@ -16,6 +16,25 @@
         android:textStyle="bold"
         android:layout_margin="16dp"/>
 
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="20dp"
+        android:layout_weight="0"
+
+
+        />
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log In"
+        android:textSize="20dp"
+        android:layout_weight="0"
+        android:layout_marginVertical="10dp"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,16 +57,6 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textSize="20dp"
-        android:padding="20dp"
-        android:layout_weight="0"
-        android:layout_marginVertical="50dp"
 
-        />
 
 </LinearLayout>

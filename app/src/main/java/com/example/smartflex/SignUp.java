@@ -43,12 +43,12 @@ public class SignUp extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = firebaseSingelton.getFirebaseAuth().getCurrentUser();
-        if (currentUser != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        FirebaseUser currentUser = firebaseSingelton.getFirebaseAuth().getCurrentUser();
+//        if (currentUser != null) {
+//            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
     }
 
     @Override
@@ -62,8 +62,8 @@ public class SignUp extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.loginNow);
 
-        passwordStrengthIndicator = new PasswordStrengthIndicator();
-        passwordStrengthIndicator.addObserver((PasswordStrengthObserver) this);
+        //passwordStrengthIndicator = new PasswordStrengthIndicator();
+        //passwordStrengthIndicator.addObserver((PasswordStrengthObserver) this);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,31 +71,30 @@ public class SignUp extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
                 finish();
-
             }
 
         });
-        editTextPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String password = charSequence.toString();
-
-                //notify the observer about the change
-                passwordStrengthIndicator.notifyObservers((checkPasswordSrength(password)));
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-
-        });
+//        editTextPassword.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                String password = charSequence.toString();
+//
+//                //notify the observer about the change
+//                passwordStrengthIndicator.notifyObservers((checkPasswordSrength(password)));
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//
+//        });
 
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
@@ -158,10 +157,10 @@ public class SignUp extends AppCompatActivity {
         }
 
     }
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        passwordStrengthIndicator.removeObserver((PasswordStrengthObserver) this);
-    }
+//    @Override
+//    protected void onDestroy(){
+//        super.onDestroy();
+//        passwordStrengthIndicator.removeObserver((PasswordStrengthObserver) this);
+//    }
 
 }

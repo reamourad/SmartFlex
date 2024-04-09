@@ -13,6 +13,7 @@ public class Category implements Serializable{
     public float moneySpent;
     public boolean showMenu;
 
+
     //constructor
     // Constructor
     public Category(int icon, String name, float cost, CostType costType, boolean showMenu) {
