@@ -4,6 +4,7 @@ import static com.example.smartflex.Database.balance;
 import static com.example.smartflex.Database.income;
 import static com.example.smartflex.Database.isFirstLaunch;
 import static com.example.smartflex.Database.needsCategory;
+import static com.example.smartflex.Database.percentageNeeds;
 import static com.example.smartflex.Database.savingsCategory;
 import static com.example.smartflex.Database.wantsCategory;
 
@@ -66,12 +67,14 @@ public class MainActivity extends AppCompatActivity{
         //firebase
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+
         if(Database.isFirstLaunch == true){
             isFirstLaunch = false;
+
             Database.fetchUserDataFromRealtimeDatabase(user.getUid(), new OnDataFetchedListener() {
                 @Override
                 public void onDataFetched() {
-
+                    startActivity(new Intent(MainActivity.this, MainActivity.class));
                 }
 
                 @Override
@@ -79,8 +82,8 @@ public class MainActivity extends AppCompatActivity{
 
                 }
             });
-        }
-        if(user != null){
+            Toast.makeText(MainActivity.this, String.valueOf(percentageNeeds), Toast.LENGTH_SHORT).show();
+        } else if (user != null) {
             Database.transferGuestDataToRealtimeDatabase(user.getUid());
         }
 
