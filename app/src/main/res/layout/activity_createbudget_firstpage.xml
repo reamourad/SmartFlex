@@ -8,7 +8,7 @@
     android:background="@color/blue"
     android:orientation="vertical"
     android:gravity="top"
-    android:padding="15dp"
+    android:padding="16dp"
     >
     <ImageView
         android:id="@+id/backButton"
@@ -51,7 +51,7 @@
         android:paddingStart="50px"
         android:text="Choose your template"
         android:textColor="#FFFFFF"
-        android:textSize="22sp" />
+        android:textSize="18dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -148,7 +148,7 @@
             android:paddingStart="50px"
             android:text="Input your income"
             android:textColor="#FFFFFF"
-            android:textSize="22sp" />
+            android:textSize="18dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -193,7 +193,7 @@
             android:paddingStart="50px"
             android:text="Budget Length"
             android:textColor="#FFFFFF"
-            android:textSize="22sp" />
+            android:textSize="18dp" />
 
     </LinearLayout>
 
@@ -220,7 +220,7 @@
         android:gravity="center_vertical"
         android:paddingStart="50px"
         android:text="Confirmed"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         android:textSize="15sp"
         android:visibility="invisible" />
 

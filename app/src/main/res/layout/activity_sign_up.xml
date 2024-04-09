@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/blue"
+
     android:layout_gravity="center"
     android:orientation="vertical"
     android:layout_height="match_parent"
@@ -14,9 +16,11 @@
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
         android:layout_gravity="center"
+
         android:textAlignment="center"
         android:padding="15dp"
         android:textSize="30sp"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -25,6 +29,8 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Email"
         android:hint="@string/email"
+        android:textColorHint="@color/pastelBlue"
+        android:textSize="16dp"
         android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -35,6 +41,8 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Password"
         android:hint="@string/password"
+        android:textColorHint="@color/pastelBlue"
+        android:textSize="16dp"
         android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -49,8 +57,8 @@
         android:id="@+id/signUpButton"
         android:text="@string/sign_up"
         android:layout_gravity="center"
-        android:padding="12dp"
-        android:layout_width="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
 
@@ -61,8 +69,9 @@
         android:padding="5dp"
         android:gravity="center"
         android:textAlignment="inherit"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

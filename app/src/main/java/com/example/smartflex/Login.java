@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login extends AppCompatActivity {
     TextInputEditText editTextEmail, editTextPassword;
     Button buttonLogin;
-    FirebaseAuth mAuth;
+    FirebaseSingelton firebaseSingelton;
     ProgressBar progressBar;
     TextView textView;
     @Override
@@ -38,7 +38,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mAuth=FirebaseAuth.getInstance();
+        firebaseSingelton= FirebaseSingelton.getInstance();
+
         editTextEmail = findViewById(R.id.Email);
         editTextPassword = findViewById(R.id.Password);
         buttonLogin = findViewById(R.id.loginButton);
@@ -75,7 +76,7 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
-                mAuth.signInWithEmailAndPassword(email, password)
+                firebaseSingelton.getFirebaseAuth().signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
