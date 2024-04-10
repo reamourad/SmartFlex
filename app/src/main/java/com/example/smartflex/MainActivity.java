@@ -68,23 +68,10 @@ public class MainActivity extends AppCompatActivity{
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
-        if(Database.isFirstLaunch == true){
-            isFirstLaunch = false;
-
-            Database.fetchUserDataFromRealtimeDatabase(user.getUid(), new OnDataFetchedListener() {
-                @Override
-                public void onDataFetched() {
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));
-                }
-
-                @Override
-                public void onError(String errorMessage) {
-
-                }
-            });
-        } else if (user != null) {
+        if(user != null){
             Database.transferGuestDataToRealtimeDatabase(user.getUid());
         }
+
 
 
         btn.setOnClickListener(new View.OnClickListener() {
