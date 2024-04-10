@@ -14,12 +14,17 @@ import android.os.Bundle;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Insights extends AppCompatActivity {
@@ -93,12 +98,23 @@ public class Insights extends AppCompatActivity {
         pieDataSet.setValueTextSize(12f);
         //providing color list for coloring different entries
         pieDataSet.setColors(colors);
+        // Set text color for percentage values
+        pieDataSet.setValueTextColor(Color.WHITE);
+
+
         //grouping the data set from entry to chart
         PieData pieData = new PieData(pieDataSet);
         pieChart.setUsePercentValues(true);
         //showing the value of the entries, default true if not set
         pieData.setDrawValues(true);
 
+        // Set custom value formatter
+        pieData.setValueFormatter(new DefaultValueFormatter(0) {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                return String.format(Locale.getDefault(), "%.0f%%", value);
+            }
+        });
 
         pieChart.setData(pieData);
         pieChart.invalidate();
@@ -124,6 +140,10 @@ public class Insights extends AppCompatActivity {
         pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         //setting the color of the hole in the middle, default white
         pieChart.setHoleColor(Color.parseColor("#000000"));
+
+        // Hide legend
+        Legend legend = pieChart.getLegend();
+        legend.setEnabled(false);
 
 
     }

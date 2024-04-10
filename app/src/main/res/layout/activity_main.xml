@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:background="@color/blue"
     android:orientation="vertical"
-    android:gravity="top"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +28,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="148dp" />
+            android:layout_height="135dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +43,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView2"
             android:layout_width="match_parent"
-            android:layout_height="146dp" />
+            android:layout_height="133dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,9 +57,9 @@
             android:fontFamily="@font/poppins_medium"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView3"
             android:layout_width="match_parent"
-            android:layout_height="146dp"
-            android:id="@+id/recyclerView3"/>
+            android:layout_height="124dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,15 +112,17 @@
                     android:textSize="14dp"
                     />
 
-
             </LinearLayout>
-            <Button
-                android:id="@+id/createbudgetButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Change your Budget"></Button>\
         </LinearLayout>
+
+        <Button
+            android:id="@+id/createbudgetButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Change your Budget"
+            android:layout_marginTop="20dp"></Button>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

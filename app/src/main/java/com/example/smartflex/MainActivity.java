@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity{
 
                 }
             });
-            Toast.makeText(MainActivity.this, String.valueOf(percentageNeeds), Toast.LENGTH_SHORT).show();
         } else if (user != null) {
             Database.transferGuestDataToRealtimeDatabase(user.getUid());
         }
